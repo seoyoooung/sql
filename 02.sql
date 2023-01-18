@@ -110,7 +110,7 @@ where last_name like '_o%';
 select job_id
 from employees;
 
--- 와일드카드가 중복되는데 언더바로 구분하고 싶으면 escape + _ 사용 후 escape 선언하면 된다.
+-- 와일드카드가 중복되는데 와일드카드가 아니라  언더바로 구분하고 싶으면 escape + _ 사용 후 escape 선언하면 된다.
 select last_name, job_id
 from employees
 where job_id like 'I_\_%' escape '\';
@@ -131,14 +131,14 @@ from employees;
 -- where 절은 true or false를 골라낸다.
 select last_name, manager_id 
 from employees
-where manager_id = null;
+where manager_id = null; 
 
 --field value가 null인 값을 찾고싶다. = is null 연산자
 select last_name, manager_id 
 from employees
 where manager_id is null;
 
--- and 논리연산자 : 둘 다 true이면 조회된다.
+-- and 논리연산자 : 둘 다 true이면 조회된다. n개의 조건을 결합할 때 사용한다.
 select last_name, job_id, salary
 from employees
 where salary >= 5000 and job_id like '%IT%';
@@ -154,7 +154,8 @@ where salary >= 5000 or job_id like '%IT%';
 -- ★ sql에서 배운 것을 사용해서 예제를 푸세요~!
 select last_name, salary, department_id
 from employees
-where (salary between 5000 and 12000) and (department_id in (20 , 50));
+where (salary between 5000 and 12000) and
+            (department_id in (20 , 50));
 
 -- 과제 : 이름에 a와 e가 포함된 사원들의 이름을 조회하라.
 select last_name
@@ -181,18 +182,18 @@ where commission_pct is not null;
 
 select last_name, salary
 from employees
-where not (manager_id is null and salary >= 20000);
+where not (manager_id is null and salary >= 20000); --여기서 not은 and에 대해서 처리한 것이다
 
 --과제 : 직업이 영업이다. 그리고, 월급이 $2500, $3500가 아니다.
 --          위 사원들의 이름, 직업, 월급을 조회하라.
 select last_name, job_id, salary
 from employees
-where job_id like 'SA_R%' and  
+where job_id like 'SA_M%' and  
        salary not in (2500, 3500);   -- where job_id like 'SA%' and salary not in (2500, 3500);
 
 
 --order by : 맨 마지막에 사용된다 . 내가 order by 전에 조회된 값을 가지고 분류한다. 기본이 오름차순이다.
--- 오름차순이 기본 값이다.
+-- 오름차순이 기본 값이다. 오름차순은 생략할수 있다.  asc
 select last_name, department_id
 from employees
 order by department_id; 
@@ -211,7 +212,8 @@ select last_name, department_id dept_id
 from employees
 order by dept_id; 
 
- --지금까지의 모든 문법을 다 써보자.
+ --지금까지의 모든 문법을 다 써보자. 
+ -- select > from > where > order by  순서대로 쓰인다.
  select last_name, hire_date
  from employees
  where department_id = 100
