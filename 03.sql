@@ -98,7 +98,6 @@ select employee_id, concat(first_name, last_name) name,
 from employees
 where job_id like '%PROG';
 
---230118
 -- 과제 : 이름이 J나 A나 M으로 시작하는 사원들의 이름, 이름의 글자수를 조회하라.
 --           이름의 첫글자는 대문자, 나머지는 소문자로 출력한다.
 select  initcap(last_name) ,length (last_name)

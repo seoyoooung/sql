@@ -88,7 +88,7 @@ select to_char(salary)
 from employees;
 
 --9와 0의 차이는 1이후 숫자에서 나타난다.
---
+-- 첫번째 파라미터는 나타낼 값만 보여주고, 두번째 파라미터는 빈 숫자를 0으로 채워준다.
 select to_char(salary, '$99,999.99') , to_char(salary, '$00,000.00')
 from employees
 where last_name = 'Ernst';
@@ -100,6 +100,7 @@ from dual;
 select '|' || to_char(12.12, 'fm9999.99') || '|' ,
             '|' || to_char(12.12, '0000.00') || '|'
 from dual;
+-- 결과값 -> |      12|         /    	| 0012.12|
 
 -- 클라이언트가 실행되는 기준 돈 단위로 바뀐다. = 현재 america
 select to_char(1237, 'L9999')
@@ -273,7 +274,9 @@ order by case day
 --          사원들의 이름, 입사일, 상품권 금액을 조회하라.
 
 select last_name, hire_date, 
-        case when to_char(hire_date <= '2004.12.31') then '100만원'
-        else '50만원'
-        end
-from employees;
+        case when hire_date <= '2005/12/31' then '100만원'
+        else '10만원'
+        end Ticket
+from employees
+order by Ticket, hire_date;
+
