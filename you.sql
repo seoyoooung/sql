@@ -43,8 +43,12 @@ drop table emps cascade constraints;
 select constraint_name, constraint_type ,  table_name
 from user_constraints;
 
--- hr스키마로 변경해서 조회하면 데이터가 나오지 않는다.
+-- hr스키마로 변경해서 조회하면 데이터가 나오지 않는다. / you 스키마로 변경하면 정상 조회 가능하다.
 select * from depts;
+
+
+
+
 
 
 
